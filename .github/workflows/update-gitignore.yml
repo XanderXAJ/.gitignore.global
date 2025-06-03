@@ -30,7 +30,19 @@ jobs:
         run: |
           cat gitignore/Global/*.gitignore > global.gitignore
 
+      - name: Detect whether there were any changes to global.gitignore
+        id: changes
+        run: |
+          if git diff --exit-code global.gitignore; then
+            echo "global.gitignore is unchanged."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "global.gitignore updated."
+            echo "found=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Commit and push changes
+        if: steps.changes.outputs.found == 'true'
         # https://github.com/actions/checkout?tab=readme-ov-file#push-a-commit-using-the-built-in-token
         run: |
           git config user.name "github-actions[bot]"
