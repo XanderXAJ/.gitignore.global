@@ -28,7 +28,7 @@ jobs:
 
       - name: Generate global .gitignore
         run: |
-          cat gitignore/Global/* > global.gitignore
+          cat gitignore/Global/*.gitignore > global.gitignore
 
       - name: Commit and push changes
         # https://github.com/actions/checkout?tab=readme-ov-file#push-a-commit-using-the-built-in-token
