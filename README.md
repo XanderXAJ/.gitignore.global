@@ -17,7 +17,7 @@ This can result in innocous extra text files to dramatic slow downs in clones an
 GitHub maintains a collection of globally useful gitignore files for many common tools that can be leveraged to make it much easier to avoid committing files.
 **But git can only reference one file, and Github only provides a collection of them!**
 
-So this project plugs the gap: it takes that collection of gitignore files and cats them into a single giant `.global.gitignore` file, ready for use with git.
+**So this project plugs the gap**: it takes that collection of gitignore files and cats them into a single giant `.global.gitignore` file, ready for use with git.
 
 ## Usage
 
