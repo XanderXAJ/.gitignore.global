@@ -1,4 +1,4 @@
-# global.gitignore
+# .gitignore.global
 
 GitHub's global .gitignores catted into a single file for use with `git`.
 
@@ -20,7 +20,7 @@ Not to mention the possibility of committing secrets...
 [GitHub maintains a collection of globally useful gitignore files][gitignore] for many common tools that can be leveraged to make it much easier to avoid committing files.
 **But git can only reference one file, and GitHub only provides a collection of them!**
 
-**So this project plugs the gap**: it takes that collection of gitignore files and cats them into a single giant `.global.gitignore` file, ready for use with git.
+**So this project plugs the gap**: it takes that collection of gitignore files and cats them into a single giant `..gitignore.global` file, ready for use with git.
 
 [gitignore]: https://github.com/github/gitignore
 
@@ -28,38 +28,38 @@ Not to mention the possibility of committing secrets...
 
 ### One-off `curl`
 
-To grab the latest `global.gitignore` `*sh` shells:
+To grab the latest `.gitignore.global` `*sh` shells:
 
 ```shell
-curl -fsSL -o ~/.global.gitignore "https://raw.githubusercontent.com/XanderXAJ/global.gitignore/refs/heads/main/global.gitignore"
+curl -fsSL -o ~/.gitignore.global "https://raw.githubusercontent.com/XanderXAJ/.gitignore.global/refs/heads/main/.gitignore.global"
 ```
 
 Then configure git to use it:
 
 ```shell
-git config set --global core.excludesFile ~/.global.gitignore
+git config set --global core.excludesFile ~/.gitignore.global
 ```
 
-To update `global.gitignore`, **re-run** the above `curl` command.
+To update `.gitignore.global`, **re-run** the above `curl` command.
 
 ### Repo clone
 
 If you prefer to use git, clone the repo via your preferred method (HTTP shown since it doesn't require auth):
 
 ```shell
-git clone https://github.com/XanderXAJ/global.gitignore.git ~/.global.gitignore
+git clone https://github.com/XanderXAJ/.gitignore.global.git ~/..gitignore.global
 ```
 
 Then configure git to use it:
 
 ```shell
-git config set --global core.excludesFile ~/.global.gitignore/global.gitignore
+git config set --global core.excludesFile ~/..gitignore.global/.gitignore.global
 ```
 
-To update `global.gitignore`, run the following:
+To update `.gitignore.global`, run the following:
 
 ```shell
-git -C ~/.global.gitignore pull
+git -C ~/..gitignore.global pull
 ```
 
 ## FAQ
