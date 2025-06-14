@@ -20,7 +20,7 @@ Not to mention the possibility of committing secrets...
 [GitHub maintains a collection of globally useful gitignore files][gitignore] for many common tools that can be leveraged to make it much easier to avoid committing files.
 **But git can only reference one file, and GitHub only provides a collection of them!**
 
-**So this project plugs the gap**: it takes that collection of gitignore files and cats them into a single giant `..gitignore.global` file, ready for use with git.
+**So this project plugs the gap**: it takes that collection of gitignore files and cats them into a single giant `.gitignore.global` file, ready for use with git.
 
 [gitignore]: https://github.com/github/gitignore
 
@@ -59,7 +59,7 @@ git config set --global core.excludesFile ~/.gitignore.global/.gitignore.global
 To update `.gitignore.global`, run the following:
 
 ```shell
-git -C ~/..gitignore.global pull
+git -C ~/.gitignore.global pull
 ```
 
 ## FAQ
