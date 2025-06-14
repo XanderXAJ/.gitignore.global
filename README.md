@@ -47,13 +47,13 @@ To update `.gitignore.global`, **re-run** the above `curl` command.
 If you prefer to use git, clone the repo via your preferred method (HTTP shown since it doesn't require auth):
 
 ```shell
-git clone https://github.com/XanderXAJ/.gitignore.global.git ~/..gitignore.global
+git clone https://github.com/XanderXAJ/.gitignore.global.git ~/.gitignore.global
 ```
 
 Then configure git to use it:
 
 ```shell
-git config set --global core.excludesFile ~/..gitignore.global/.gitignore.global
+git config set --global core.excludesFile ~/.gitignore.global/.gitignore.global
 ```
 
 To update `.gitignore.global`, run the following:
