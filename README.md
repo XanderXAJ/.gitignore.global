@@ -40,7 +40,14 @@ Then configure git to use it:
 git config set --global core.excludesFile ~/.gitignore.global
 ```
 
-To update `.gitignore.global`, **re-run** the above `curl` command.
+To update `.gitignore.global`, **re-run** the above `curl` command, **or** add aliases to help you update:
+
+```shell
+# Shell alias
+alias updateGitignoreGlobal='curl -fsSL -o ~/.gitignore.global "https://raw.githubusercontent.com/XanderXAJ/.gitignore.global/refs/heads/main/.gitignore.global"'
+# Git alias
+git config --global alias.updateGitignoreGlobal '! curl -fsSL -o ~/.gitignore.global "https://raw.githubusercontent.com/XanderXAJ/.gitignore.global/refs/heads/main/.gitignore.global"'
+```
 
 ### Repo clone
 
