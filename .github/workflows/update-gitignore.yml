@@ -1,7 +1,5 @@
 on:
   push:
-    branches:
-      - main
   schedule:
     - cron: "0 * * * *"
 
@@ -18,6 +16,7 @@ jobs:
       - name: Checkout GitHub gitignore repo
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0 # Fetch history to allow generating meaningful commit messages
           repository: github/gitignore
           path: gitignore
 
@@ -26,14 +25,21 @@ jobs:
           # Irony alarm or appropriate alarm?
           echo "/gitignore/" >> .gitignore
 
+      - name: Note previous commit info
+        id: previous
+        run: |
+          echo ref=$(<.gitignore.global.ref) >> $GITHUB_OUTPUT
+
       - name: Generate global .gitignore
         run: |
           cat gitignore/Global/*.gitignore > .gitignore.global
+          # Place most recent gitignore repo commit ref that updated Global directory into .gitignore.global.ref
+          git -C gitignore rev-list -1 HEAD -- Global > .gitignore.global.ref
 
       - name: Detect whether there were any changes to .gitignore.global
         id: changes
         run: |
-          if git diff --exit-code .gitignore.global; then
+          if git diff --exit-code .gitignore.global .gitignore.global.ref; then
             echo ".gitignore.global is unchanged."
             echo "found=false" >> "$GITHUB_OUTPUT"
           else
@@ -43,10 +49,22 @@ jobs:
 
       - name: Commit and push changes
         if: steps.changes.outputs.found == 'true'
-        # https://github.com/actions/checkout?tab=readme-ov-file#push-a-commit-using-the-built-in-token
+        env:
+          PREV_REF: ${{ steps.previous.outputs.ref }}
+        # Config for pushing a commit: https://github.com/actions/checkout?tab=readme-ov-file#push-a-commit-using-the-built-in-token
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .gitignore.global
-          git commit -m "Update .gitignore.global"
+          git add .gitignore.global .gitignore.global.ref
+
+          # Compose commit message from all global dir changes since last update
+          COMMITS=$(git -C gitignore rev-list --reverse ${PREV_REF}..HEAD -- Global)
+          DETAILS="Generated from github/gitignore@$(git -C gitignore rev-parse HEAD)"
+          for COMMIT in $COMMITS; do
+            DESC=$(git -C gitignore log -1 --format="%B" $COMMIT)
+            DETAILS+="\n---\nCommit: https://github.com/github/gitignore/commit/$COMMIT\n$DESC"
+          done
+
+          DATE=$(date -u +"%Y%m%d-%H%M%S")
+          printf "gitignore: build v%s\n\n%b" "$DATE" "$DETAILS" | git commit -F -
           git push
