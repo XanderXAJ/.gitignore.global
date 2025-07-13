@@ -22,7 +22,7 @@ It combines [GitHub’s gitignore templates][gitignore] into [**a single global 
 
 ### One-off `curl`
 
-To grab the latest `.gitignore.global` `*sh` shells:
+To grab the latest `.gitignore.global` in `*sh` shells:
 
 ```shell
 curl -fsSL -o ~/.gitignore.global "https://raw.githubusercontent.com/XanderXAJ/.gitignore.global/refs/heads/main/.gitignore.global"
