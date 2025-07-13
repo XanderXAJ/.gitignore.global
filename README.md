@@ -2,25 +2,19 @@
 
 GitHub's global .gitignores catted into a single file for use with `git`.
 
-## Why do I want a global .gitignore?
+## Why use a global .gitignore?
 
-When you work on a project, you might standardise things the programming language, package manager, dependencies, build tooling and the like.
-But you might _not_ enforce people use a single IDE, or other tools auxiliary to the project.
+When working on projects, we standardise many things -- **but not everything**.
 
-**I think this is great**: allowing everyone to use their favoured tooling where possible (and just standardising where it makes sense) encourages experimentation, allows accessibility and lets the industry move forward.
+As a result, we don’t all use the same tools — **nor should we**.
 
-However!
-Everyone needs to be responsible for their tools:
-The tools, IDEs and operating systems you use can generate files in order to do their work.
+**Diverse setups encourage productivity, creativity and accessibility.**
 
-If you're not careful, they can accidentally end up in the projects when they shouldn't.
-This can result in innocous extra text files to dramatic slow downs in clones and checkouts due to massive archives being committed!
-Not to mention the possibility of committing secrets...
+**But many tools generate clutter**: files that have no place in version control, which end up slowing repos, leaking secrets, or distracting colleagues.
+**Clutter we're responsible for.**
 
-[GitHub maintains a collection of globally useful gitignore files][gitignore] for many common tools that can be leveraged to make it much easier to avoid committing files.
-**But git can only reference one file, and GitHub only provides a collection of them!**
-
-**So this project plugs the gap**: it takes that collection of gitignore files and cats them into a single giant `.gitignore.global` file, ready for use with git.
+**This project eases that burden.**
+It combines [GitHub’s gitignore templates][gitignore] into [**a single global file**](.gitignore.global), helping you keep your commits clutter-free.
 
 [gitignore]: https://github.com/github/gitignore
 
