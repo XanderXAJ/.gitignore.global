@@ -953,6 +953,7 @@ _ngo/
 _xmsgs/
 # General
 .DS_Store
+__MACOSX/
 .AppleDouble
 .LSOverride
 Icon[]
