@@ -984,6 +984,7 @@ _ngo/
 _xmsgs/
 # General
 .DS_Store
+.localized
 __MACOSX/
 .AppleDouble
 .LSOverride
